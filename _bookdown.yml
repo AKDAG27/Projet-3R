@@ -1,0 +1,6 @@
+book_filename: "Projet-3R_Estimation_des_durees"
+delete_merged_file: true
+language:
+  ui:
+    chapter_name: "Chapter "
+output_dir: "docs"
