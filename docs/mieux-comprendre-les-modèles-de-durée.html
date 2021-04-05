@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Mieux comprendre les modèles de durée | Durée optimale d’un brevet</title>
+  <meta name="description" content="Estimation de la durée de vie moyenne des brevets" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Mieux comprendre les modèles de durée | Durée optimale d’un brevet" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Estimation de la durée de vie moyenne des brevets" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Mieux comprendre les modèles de durée | Durée optimale d’un brevet" />
+  
+  <meta name="twitter:description" content="Estimation de la durée de vie moyenne des brevets" />
+  
+
+<meta name="author" content="Zennaf &amp; Léger &amp; Akdag" />
+
+
+<meta name="date" content="2021-04-05" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="mieux-comprendre-les-brevets.html"/>
+<link rel="next" href="application-des-modèles-sur-une-nouveau-jeu-de-données.html"/>
+<script src="libs/header-attrs-2.7/header-attrs.js"></script>
+<script src="libs/jquery-3.5.1/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+<link href="libs/bsTable-3.3.7/bootstrapTable.min.css" rel="stylesheet" />
+<script src="libs/bsTable-3.3.7/bootstrapTable.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.3/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.57.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.57.1/plotly-latest.min.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Brevets</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#recherches-préliminaires"><i class="fa fa-check"></i><b>1.1</b> <span style="color: #344A58;">Recherches préliminaires </span></a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#quelques-chiffres-sur-la-rd"><i class="fa fa-check"></i><b>1.1.1</b> <span style="color: #CDB380;">Quelques chiffres sur la R&amp;D</span></a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#quelques-classements"><i class="fa fa-check"></i><b>1.1.2</b> <span style="color: #CDB380;">Quelques classements</span></a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#cadre-juridique-de-la-propriété-intellectuelle"><i class="fa fa-check"></i><b>1.2</b> <span style="color: #344A58;">Cadre juridique de la propriété intellectuelle</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html"><i class="fa fa-check"></i><b>2</b> Mieux comprendre les brevets</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#breveter-ou-pas"><i class="fa fa-check"></i><b>2.1</b> <span style="color: #344A58;">Breveter ou pas</span></a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#les-coûts-administratifs"><i class="fa fa-check"></i><b>2.1.1</b> <span style="color: #cdb280;">Les coûts administratifs</span></a></li>
+<li class="chapter" data-level="2.1.2" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#les-coûts-financiers"><i class="fa fa-check"></i><b>2.1.2</b> <span style="color: #cdb280;">Les coûts financiers</span></a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#approche-financière"><i class="fa fa-check"></i><b>2.2</b> <span style="color: #344A58;">Approche financière</span></a></li>
+<li class="chapter" data-level="2.3" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#rôle-dun-brevet"><i class="fa fa-check"></i><b>2.3</b> <span style="color: #344A58;">Rôle d’un brevet</span></a></li>
+<li class="chapter" data-level="2.4" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#durée-optimale-légale"><i class="fa fa-check"></i><b>2.4</b> <span style="color: #344A58;">Durée optimale légale</span></a></li>
+<li class="chapter" data-level="2.5" data-path="mieux-comprendre-les-brevets.html"><a href="mieux-comprendre-les-brevets.html#incitation-à-linnovation-vs-bien-être-social"><i class="fa fa-check"></i><b>2.5</b> <span style="color: #344A58;">Incitation à l’innovation VS bien-être social</span></a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html"><i class="fa fa-check"></i><b>3</b> Mieux comprendre les modèles de durée</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#description-des-données"><i class="fa fa-check"></i><b>3.1</b> <span style="color: #344A58;">Description des données</span></a></li>
+<li class="chapter" data-level="3.2" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#fonctions-utiles"><i class="fa fa-check"></i><b>3.2</b> <span style="color: #344A58;">Fonctions utiles</span></a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#fonction-de-survie"><i class="fa fa-check"></i><b>3.2.1</b> <span style="color: #cdb280;">Fonction de survie</span></a></li>
+<li class="chapter" data-level="3.2.2" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#fonction-de-répartition"><i class="fa fa-check"></i><b>3.2.2</b> <span style="color: #cdb280;">Fonction de répartition </span></a></li>
+<li class="chapter" data-level="3.2.3" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#risque-instantané-lambda-ou-taux-de-hasard"><i class="fa fa-check"></i><b>3.2.3</b> <span style="color: #cdb280;">Risque instantané <span class="math inline">\(\lambda\)</span> ou taux de hasard :</span></a></li>
+<li class="chapter" data-level="3.2.4" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#moyenne-variance-et-quantile-de-la-durée-de-vie"><i class="fa fa-check"></i><b>3.2.4</b> <span style="color: #cdb280;">Moyenne, variance et quantile de la durée de vie: </span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#estimation-semi-paramétrique"><i class="fa fa-check"></i><b>3.3</b> <span style="color: #344a58;">Estimation semi-paramétrique</span></a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#modèle-de-hasards-proportionnels"><i class="fa fa-check"></i><b>3.3.1</b> <span style="color: #cdb380;">Modèle de hasards proportionnels</span></a></li>
+<li class="chapter" data-level="3.3.2" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#modèle-de-cox"><i class="fa fa-check"></i><b>3.3.2</b> <span style="color: #cdb280;">Modèle de <span class="citation"><span>Larmarange</span> (<span>n.d.</span>)</span> </span></a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#estimation-non-paramétrique"><i class="fa fa-check"></i><b>3.4</b> <span style="color: #344a58;">Estimation non paramétrique</span></a></li>
+<li class="chapter" data-level="3.5" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#estimation-paramétrique"><i class="fa fa-check"></i><b>3.5</b> <span style="color: #344a58;">Estimation paramétrique</span></a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#ecriture-de-la-fonction-de-vraisemblance"><i class="fa fa-check"></i><b>3.5.1</b> <span style="color: #cdb380;">Ecriture de la fonction de vraisemblance</span></a></li>
+<li class="chapter" data-level="3.5.2" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#spécification-de-la-loi-de-durée-de-vie"><i class="fa fa-check"></i><b>3.5.2</b> <span style="color: #cdb380;">Spécification de la loi de durée de vie</span></a></li>
+<li class="chapter" data-level="3.5.3" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#estimations-et-représentations-graphiques"><i class="fa fa-check"></i><b>3.5.3</b> <span style="color: #cdb380;">Estimations et représentations graphiques</span></a></li>
+<li class="chapter" data-level="3.5.4" data-path="mieux-comprendre-les-modèles-de-durée.html"><a href="mieux-comprendre-les-modèles-de-durée.html#estimations-selon-les-domaines-technologiques"><i class="fa fa-check"></i><b>3.5.4</b> <span style="color: #cdb380;">Estimations selon les domaines technologiques</span></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><i class="fa fa-check"></i><b>4</b> Application des modèles sur une nouveau jeu de données</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#statistiques-descriptives"><i class="fa fa-check"></i><b>4.1</b> <span style="color: #344A58;">Statistiques descriptives</span></a></li>
+<li class="chapter" data-level="4.2" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#estimation-paramétrique-1"><i class="fa fa-check"></i><b>4.2</b> <span style="color: #344A58;">Estimation paramétrique</span></a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#loi-singh-madala"><i class="fa fa-check"></i><b>4.2.1</b> <span style="color: #cdb380;">Loi Singh-Madala</span></a></li>
+<li class="chapter" data-level="4.2.2" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#estimation-avec-la-loi-log-normal"><i class="fa fa-check"></i><b>4.2.2</b> <span style="color: #cdb380;">Estimation avec la loi log-normal</span></a></li>
+<li class="chapter" data-level="4.2.3" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#représentations-graphiques-des-différentes-fonctions"><i class="fa fa-check"></i><b>4.2.3</b> <span style="color: #cdb380;">Représentations graphiques des différentes fonctions</span></a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#estimation-non-paramétrique-méthode-de-kaplan-meier"><i class="fa fa-check"></i><b>4.3</b> <span style="color: #344A58;">Estimation non-paramétrique : méthode de Kaplan-Meier</span></a></li>
+<li class="chapter" data-level="4.4" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#estimation-semi-paramétriques-modèle-de-cox"><i class="fa fa-check"></i><b>4.4</b> <span style="color: #344A58;">Estimation semi-paramétriques : Modèle de Cox</span></a></li>
+<li class="chapter" data-level="4.5" data-path="application-des-modèles-sur-une-nouveau-jeu-de-données.html"><a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html#conclusion-de-lapplication"><i class="fa fa-check"></i><b>4.5</b> <span style="color: #344A58;">Conclusion de l’application</span></a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>5</b> Conclusion</a></li>
+<li class="chapter" data-level="" data-path="annexe.html"><a href="annexe.html"><i class="fa fa-check"></i>Annexe</a></li>
+<li class="chapter" data-level="" data-path="bibliographie.html"><a href="bibliographie.html"><i class="fa fa-check"></i>Bibliographie</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Durée optimale d’un brevet</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="mieux-comprendre-les-modèles-de-durée" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Mieux comprendre les modèles de durée</h1>
+<div id="description-des-données" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> <span style="color: #344A58;">Description des données</span></h2>
+<p>Le base de données que nous avons à disposition contient des informations sur 3710 brevets actifs entre 1990 et 2000. Cette base de données a été constituée à partir du stock de brevets actifs en 1990 et est exhaustive pour tous les brevets déposés entre 1990 et 2000.</p>
+<p>Les informations a notre disposition sont les suivantes :</p>
+<ul>
+<li><p><b style="color: #cdaa80;">le numéro de dossier du brevet</b></p></li>
+<li><p><b style="color: #cdaa80;">la date de dépôt</b></p></li>
+<li><p><b style="color: #cdaa80;">la date de dernière nouvelle (date d’abandon ou non)</b></p></li>
+<li><p><b style="color: #cdaa80;">le statut du brevet</b> :</p></li>
+</ul>
+<div style="padding:3px; border:2px dotted #fae5d3; background-color:#fae5d3;">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Statut</th>
+<th align="center">Nb de brevets</th>
+<th align="left">Pourcentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">EXP : expiré</td>
+<td align="center">125</td>
+<td align="left">3,3</td>
+</tr>
+<tr class="even">
+<td align="center">ABD : abandonné</td>
+<td align="center">2016</td>
+<td align="left">54,3</td>
+</tr>
+<tr class="odd">
+<td align="center">CEDE : cédé</td>
+<td align="center">16</td>
+<td align="left">0,4</td>
+</tr>
+<tr class="even">
+<td align="center">ACT : actif</td>
+<td align="center">1553</td>
+<td align="left">41,8</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul>
+<li><b style="color: #cdaa80;">la direction opérationnelle à laquelle appartient le brevet</b>
+<div style="padding:3px; border:2px dotted #fae5d3; background-color:#fae5d3;">
+<table>
+<thead>
+<tr class="header">
+<th align="center">Directions</th>
+<th align="center">Nb de brevets</th>
+<th align="left">Pourcentage</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">DAM</td>
+<td align="center">525</td>
+<td align="left">14,15</td>
+</tr>
+<tr class="even">
+<td align="center">DCC</td>
+<td align="center">518</td>
+<td align="left">14,1</td>
+</tr>
+<tr class="odd">
+<td align="center">DSV</td>
+<td align="center">109</td>
+<td align="left">2,9</td>
+</tr>
+<tr class="even">
+<td align="center">DRN</td>
+<td align="center">327</td>
+<td align="left">8,8</td>
+</tr>
+<tr class="odd">
+<td align="center">DTA</td>
+<td align="center">1530</td>
+<td align="left">41,2</td>
+</tr>
+<tr class="even">
+<td align="center">INSTN</td>
+<td align="center">2</td>
+<td align="left">0,05</td>
+</tr>
+<tr class="odd">
+<td align="center">IPSN</td>
+<td align="center">1,9</td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="center">DG</td>
+<td align="center">10</td>
+<td align="left">0,3</td>
+</tr>
+<tr class="odd">
+<td align="center">autre (non classé)</td>
+<td align="center">408</td>
+<td align="left">11</td>
+</tr>
+</tbody>
+</table>
+</div></li>
+</ul>
+<p>Notre but compte tenu des informations à notre disposition est de pouvoir estimer la durée de vie des brevets et ainsi avoir des renseignements sur leur valeur.
+Nous avons ici à faire avec des données de durées. Ce type de données présente des spécificités du fait que l’on étudie une caractéristique acquise au cours du temps : il faudra situer les événements dans le temps et non pas simplement regarder si le brevet a été abandonné ou non durant la période de l’observation. Les études de survie sont un type d’étude utilisant des méthodes d’analyses particulières. Ces méthodes vont permettre d’étudier le délai de survenue d’un événement. Dans notre cas, l’objectif va être de déterminer à quel âge un brevet arrêtera d’être renouvelé.</p>
+<p>Avant de procéder aux estimations, nous allons nous intéresser aux spécificités de notre base de données. Nous allons nous intéresser à la collecte des données afin d’identifier les éventuels “problèmes” d’échantillonnage et de manque d’information. Tous ces renseignements seront utiles afin de pouvoir correctement construire notre modèle statistique de durée de vie et obtenir les meilleures estimations possibles.</p>
+<p><b style="color: #cdaa80;">Echantillonnage de la BDD : données tronquées</b></p>
+<p>Notre base de données contient tous les brevets devenus actifs entre 1990 et 2000. De plus, de par l’échantillonnage de stock, elle contient tous les brevets actifs en 1990. Ces derniers ont donc été déposés entre 1970 et 1989 car on rappelle que la durée maximale légale d’un brevet est de 20 ans. Tous les brevets déposés et abandonnés avant 1989 ne sont pas présents dans la base de données. Seuls les brevets déposés avant 1989 et toujours actifs en 1990 sont recensés. On est donc dans une situation de troncature car tous les brevets non renouvelés jusqu’en 1989 ne sont pas recensés. On a donc dans ce cas, une surestimation des durées de vie car les brevets présents ont tendance à être des brevets longs.</p>
+<p>Pour ce faire, notre devons prendre en compte cet effet de biais d’échantillonnage sur le stock initial au moment de nos estimations pour les brevets ayant été déposés avant 1990 afin de ne pas biaiser nos résultats.</p>
+<p><b style="color: #cdaa80;">Informations incomplètes de la BDD : données censurées</b></p>
+<p>L’information est incomplète pour certains brevets. En effet, à l’année 2000 (date de fin de l’étude), certains des brevets sont toujours actifs. Pour ceux là, nous n’avons toujours pas observé l’évènement d’intérêt qui correspond à l’abandon du brevet. Dans ces cas là la durée observée entre la date de dépôt et l’année de fin de suivi n’est pas appelée durée de vie du brevet mais l’on parle plutôt d’une ancienneté. En effet, comme l’on ne connaît pas la date d’abandon du brevet, on parle d’une ancienneté (ancienneté qui est plus courte que la durée de vie totale). Nous sommes dans le cas de brevets censurés à droite.</p>
+<p>Pour ce faire, pour les brevets abandonnés après 2000, nous devons prendre en compte cette censure à droite pour faire nos estimations.</p>
+<p>De plus, on observe un deuxième cas de censure à droite lié au fait que la durée de vie des brevets est contrainte à 20 ans. Les brevets ayant atteint la durée maximale légale devront eux aussi être traités différemment.</p>
+<p>Après avoir recensé les différentes situations présentes dans la base de données, nous allons représenter ces cas et voir quelle est la proportion de brevets se trouvant dans ces différents cas.</p>
+<p><b style="color: #cdaa80;">Synthèse des cas de la BDD</b></p>
+Nous allons tout d’abord commencer par une représentation graphique des cas afin de mieux fixer les idées.
+<div align="center">
+<p><img src="schema.png" width="550" /></p>
+</div>
+<div style="padding:1px; border:0.5px dotted #fae5d3; background-color:#fae5d3;">
+<table>
+<colgroup>
+<col width="60%" />
+<col width="15%" />
+<col width="13%" />
+<col width="10%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right"><strong>Cas</strong></th>
+<th align="center"><strong>Durée de vie</strong></th>
+<th align="center"><strong>Effectifs</strong></th>
+<th align="left"><strong>Part en %</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">Brevets déposés après 1990 et abandonnés avant 2000</td>
+<td align="center">connue</td>
+<td align="center">570</td>
+<td align="left">12,9</td>
+</tr>
+<tr class="even">
+<td align="right">Brevets déposés après 1990 et abandonnés après 2000</td>
+<td align="center">inconnue (ancienneté)</td>
+<td align="center">1262</td>
+<td align="left">35.6</td>
+</tr>
+<tr class="odd">
+<td align="right">Brevets déposés avant 1990 et abandonnés avant 2000</td>
+<td align="center">connue</td>
+<td align="center">1441</td>
+<td align="left">42,3</td>
+</tr>
+<tr class="even">
+<td align="right">Brevets déposés avant 1990 qui ont atteint l’âge maximal légal avant 2000</td>
+<td align="center">maximale</td>
+<td align="center">117</td>
+<td align="left">3</td>
+</tr>
+<tr class="odd">
+<td align="right">Brevets déposés avant 1990 et abandonnés après 2000</td>
+<td align="center">inconnue (ancienneté)</td>
+<td align="center">201</td>
+<td align="left">6,2</td>
+</tr>
+<tr class="even">
+<td align="right">Brevets déposés avant 1990 qui ont atteints l’âge maximal légal en 2000</td>
+<td align="center">maximale</td>
+<td align="center">8</td>
+<td align="left">3</td>
+</tr>
+</tbody>
+</table>
+<p><b style="color: #238694  ;">Table : Effectifs et parts des brevets</b><a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a></p>
+</div>
+<p> </p>
+<p>Une fois les différents problèmes identifiés nous allons pouvoir passer aux estimations. Pour ce faire, nous allons faire :
+- une estimation semi paramétrique à l’aide du package <em>survival</em>
+- une estimation non paramétrique à l’aide du package <em>survival</em>
+- une estimation paramétrique en construisant la vraisemblance “à la main” afin de prendre en compte les spécificités de notre jeu de données. La log-vraisemblance sera par la suite maximisée grâce au package <em>maxLik</em></p>
+</div>
+<div id="fonctions-utiles" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> <span style="color: #344A58;">Fonctions utiles</span></h2>
+<div id="fonction-de-survie" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> <span style="color: #cdb280;">Fonction de survie</span></h3>
+<p>La fonction de survie est, pour <span class="math inline">\(t\)</span> fixé, la probabilité de survivre jusqu’à l’instant <span class="math inline">\(t\)</span>, c’est-à-dire :</p>
+<p><span class="math display">\[  S(t) = \mathbb{P}(\mathbb{X} &gt; t), t \geqslant 0 \]</span></p>
+</div>
+<div id="fonction-de-répartition" class="section level3" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> <span style="color: #cdb280;">Fonction de répartition </span></h3>
+<p>La fonction de répartition(ou c.d.f pour “cumulative distribution function” ou courbe cumulée des évènements en fonction du temps) représente, pour <span class="math inline">\(t\)</span> fixé,la probabilité de mourir avant l’instant <span class="math inline">\(t\)</span>,c’est-à-dire</p>
+<p><span class="math display">\[F(t) = \mathbb{P}(\mathbb{X} \leqslant t) = 1 - S(t)\]</span></p>
+<p>Remarque : le signe d’inégalité stricte ou pas n’a aucune importance quand la loi <span class="math inline">\(\mathbb{X}\)</span> est continue mais lorsque l’on a des sauts (temps discret) il est donc important de faire la précision inférieure ou égale.</p>
+</div>
+<div id="risque-instantané-lambda-ou-taux-de-hasard" class="section level3" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> <span style="color: #cdb280;">Risque instantané <span class="math inline">\(\lambda\)</span> ou taux de hasard :</span></h3>
+<p>Le risque instantané ou taux d’incidence, pour <span class="math inline">\(t\)</span> fixé caractérise la probabilité de mourir dans un petit intervalle de temps après <span class="math inline">\(t\)</span>, conditionnellement au fait d’avoir survécu jusqu’au temps <span class="math inline">\(t\)</span> c’est-à-dire le risque de mort instantané pour ceux qui ont survécu :</p>
+<p><span class="math display">\[  \lambda(t) = \frac{f(t)}{S(t)} = ln(S(t))^{&#39;}\]</span></p>
+<p><span style="color: #cdaa80;">Taux de hasard cumulé <span class="math inline">\(\varLambda\)</span></span> correspond à l’intégrale du risque instantané <span class="math inline">\(\lambda\)</span>:</p>
+<p><span class="math display">\[  \varLambda(t) = \int_{0}^{t} \lambda(u)du = -ln(S(t))\]</span></p>
+<p>On peut en déduire de cette expression l’équation de la fonction de survie en fonction du taux de hasard cumulé (ou risque instantané) :</p>
+<p><span class="math display">\[  S(t) = exp(-\varLambda(t)) = exp(-\int_{0}^{t} \lambda(u)du)\]</span></p>
+<p>Ce qui donne</p>
+<p><span class="math display">\[  f(t) = \lambda(t)exp(-\int_{0}^{t} \lambda(u)du)\]</span></p>
+</div>
+<div id="moyenne-variance-et-quantile-de-la-durée-de-vie" class="section level3" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> <span style="color: #cdb280;">Moyenne, variance et quantile de la durée de vie: </span></h3>
+<ul>
+<li>Temps moyen de survie <span class="math inline">\(\mathbb{E}= \int_{0}^{\inf} S(t)dt\)</span></li>
+<li>Variance de la durée de survie <span class="math inline">\(\mathbb{V}(X) = 2\int_{0}^{\inf} tS(t)dt - (\mathbb{E(X)})^{2}\)</span></li>
+<li>Fonction quantile de la durée de survie <span class="math inline">\(q(p) = F^{-1}(p) = S^{1}(1-p), 0 &lt; p &lt; 1\)</span>, le quantile <span class="math inline">\(q(p)\)</span> est le temps où une proportion <span class="math inline">\(p\)</span> de la population a disparu.</li>
+</ul>
+</div>
+</div>
+<div id="estimation-semi-paramétrique" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> <span style="color: #344a58;">Estimation semi-paramétrique</span></h2>
+<div id="modèle-de-hasards-proportionnels" class="section level3" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> <span style="color: #cdb380;">Modèle de hasards proportionnels</span></h3>
+<p>L’objectif principal est d’évaluer l’effet de covariables sur la durée de vie.</p>
+<p>Comme il y a des facteurs X de types binaires, qualitatifs ou quantitatifs et éventuellement des facteurs ayant la notion d’âge, alors il serait intéressant de mettre en place un raisonnement valable en multivarié qui nous permettrait d’obtenir des rapports de risques instantanés (Hazard ratio).</p>
+<p>Modèle générale :</p>
+<p><span class="math display">\[  \lambda(t | Z) = \lambda_{0}(t)h(\beta,Z)\]</span></p>
+<p>Avec :</p>
+<ul>
+<li>Z : vecteur de covariables</li>
+<li><span class="math inline">\(\beta\)</span> : paramètre d’intérêt</li>
+<li>h : fonction positive</li>
+</ul>
+<p>Idée de Cox :</p>
+<ul>
+<li>Estimer la fonction <span class="math inline">\(h(t)\)</span> sur l’échantillon</li>
+<li>Vérifier l’existence d’un risque proportionnelle c’est-à-dire quels que soient deux individus <span class="math inline">\(i\)</span> et <span class="math inline">\(j\)</span> qui ont pour covariables <span class="math inline">\(Z_i\)</span> et <span class="math inline">\(Z_j\)</span> ; le rapport des fonctions de hasard ne varie pas au cours du temps</li>
+<li>Chercher à estimer le hazard ratio, soit le coefficient multiplicateur de <span class="math inline">\(h(t)\)</span></li>
+</ul>
+</div>
+<div id="modèle-de-cox" class="section level3" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> <span style="color: #cdb280;">Modèle de <span class="citation"><a href="bibliographie.html#ref-Cox" role="doc-biblioref">Larmarange</a> (<a href="bibliographie.html#ref-Cox" role="doc-biblioref">n.d.</a>)</span> </span></h3>
+<p>Un cas particulier très important est le modèle de Cox, qui suppose que la fonction <span class="math inline">\(h\)</span> est la fonction exponentielle, c’est-à-dire,</p>
+<p><span class="math display">\[\lambda(t | Z) = \lambda_{0}(t) exp(\beta^{&#39;},Z)\]</span></p>
+<p>L’estimation du coefficient de régression de <span class="math inline">\(\beta\)</span> se ferait à l’aide d’une technique de vraisemblance partielle de Cox c’est-à-dire que les estimations se feront conditionnellement à l’ensemble des instants où un décès a lieu.</p>
+<div id="modélisation" class="section level4" number="3.3.2.1">
+<h4><span class="header-section-number">3.3.2.1</span> Modélisation</h4>
+<p>Nous allons réaliser l’estimation des coefficients selon le modèle de Cox en régressant la fonction de survie selon les différents domaines d’exploitation des brevets au sein de l’entreprise.</p>
+<p>Le résumé de cette regression est comme suit :</p>
+<pre><code>## Call:
+## coxph(formula = ft_survie ~ do, data = brevet, x = TRUE, y = TRUE)
+## 
+##                    coef exp(coef) se(coef)      z        p
+## doDAM          -0.02983   0.97061  0.07637 -0.391  0.69612
+## doDCC          -0.74661   0.47397  0.08223 -9.080  &lt; 2e-16
+## doDG            0.45421   1.57492  0.33764  1.345  0.17854
+## doDRN          -0.48282   0.61704  0.08493 -5.685 1.31e-08
+## doDSM          -0.03158   0.96891  0.10453 -0.302  0.76257
+## doDSV           0.41408   1.51298  0.15009  2.759  0.00580
+## doDTA          -0.14790   0.86252  0.06552 -2.257  0.02398
+## doINSTN         0.50285   1.65342  0.70917  0.709  0.47829
+## doIPSN         -0.37465   0.68753  0.14494 -2.585  0.00974
+## doTECHNICATOME -0.42695   0.65250  0.16691 -2.558  0.01053
+## 
+## Likelihood ratio test=156.6  on 10 df, p=&lt; 2.2e-16
+## n= 3615, number of events= 2152</code></pre>
+<p>Suite à cette estimation, nous obtenons le tableau suivant représentant les différents taux de hazard.</p>
+<div style="padding:3px; border:2px dotted #fae5d3; background-color:#fae5d3;">
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-15-1.png" width="80%" style="display: block; margin: auto;" />
+<b style="color: #238694  ;">Table : Taux de hazard proportionnel de Cox</b></p>
+</div>
+<p>Ainsi, nous obtenons aussi les coefficients conditionnels estimés du modèle de régression.</p>
+<div style="padding:3px; border:2px dotted #ffffff; background-color:#ffffff;">
+<table class=" lightable-minimal lightable-hover" style="font-family: &quot;Trebuchet MS&quot;, verdana, sans-serif; width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+x
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+doDAM
+</td>
+<td style="text-align:right;">
+-0.0298265
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doDCC
+</td>
+<td style="text-align:right;">
+-0.7466084
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doDG
+</td>
+<td style="text-align:right;">
+0.4542064
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doDRN
+</td>
+<td style="text-align:right;">
+-0.4828221
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doDSM
+</td>
+<td style="text-align:right;">
+-0.0315804
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doDSV
+</td>
+<td style="text-align:right;">
+0.4140845
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doDTA
+</td>
+<td style="text-align:right;">
+-0.1478985
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doINSTN
+</td>
+<td style="text-align:right;">
+0.5028465
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doIPSN
+</td>
+<td style="text-align:right;">
+-0.3746475
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+doTECHNICATOME
+</td>
+<td style="text-align:right;">
+-0.4269455
+</td>
+</tr>
+</tbody>
+</table>
+<p><b style="color: #238694  ;">Table : Coefficients conditionnels estimés du modèle de Cox</b></p>
+</div>
+<div style="padding:3px; border:2px dotted #fae5d3; background-color:#fae5d3;">
+<p><b style="color: #238694  ;">Figure : Représenation graphiques des fonctions de survie conditionnelles estimées par le modèle de Cox</b></p>
+</div>
+</div>
+<div id="verification-de-la-validité-du-modèle" class="section level4" number="3.3.2.2">
+<h4><span class="header-section-number">3.3.2.2</span> Verification de la validité du modèle :</h4>
+<p>Afin de compléter cette modélisation, il est nécessaire de réaliser un test d’hypothèse ainsi qu’une analyse de la distribution des résidus.</p>
+<ul>
+<li><b style="color: #cdaa80;">Test d’hypothese :</b></li>
+</ul>
+<pre><code>##        chisq df      p
+## do       148 10 &lt;2e-16
+## GLOBAL   148 10 &lt;2e-16</code></pre>
+<p>Nous remarquons que notre modèle est significatif.</p>
+<ul>
+<li><b style="color: #cdaa80;">Distribution des résidus de Schoenfeld :</b></li>
+</ul>
+<p>Cette analyse permet d’observer la répartition des résidus au cours du temps. Nous constatons que la distribution des résidus ne change pas au cours du temps.</p>
+<div style="padding:3px; border:2px dotted #fae5d3; background-color:#fae5d3;">
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-19-1.png" width="80%" style="display: block; margin: auto;" />
+<b style="color: #238694  ;">Figure : Représentation de la distribution des résidus de Schoenfeld </b></p>
+</div>
+</div>
+</div>
+</div>
+<div id="estimation-non-paramétrique" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> <span style="color: #344a58;">Estimation non paramétrique</span></h2>
+<p>L’estimateur de Kaplan-Meier, aussi connu sous le nom de l’estimateur produit limite est utilisé pour estimer la fonction de survie à partir des données de durées de vie. Il est proposé par Kaplan en 1958. L’estimateur de Kaplan-Meier est donc l’estimateur du maximum de vraisemblance non-paramétrique de <span class="math inline">\(S(t)\)</span>. Son expression est :</p>
+<p><span class="math display">\[\hat S(t) = P(T &gt; t) = \prod_{t_i &gt; t} \bigg[1-\frac{d_i}{n_i} \bigg]\]</span></p>
+<p><span class="math inline">\(d_i\)</span> représente le nombre de décès au temps <span class="math inline">\(t_i\)</span> et <span class="math inline">\(n_i\)</span> le nombre d’individus concernés en <span class="math inline">\(t_i\)</span>. On a donc <span class="math inline">\(\frac{di}{ni}\)</span> qui représente la proportion d’individus mourrant en <span class="math inline">\(ti\)</span> donc <span class="math inline">\(1 - \frac{di}{ni}\)</span> est la proportion de survivants.</p>
+<p>Cette méthode appliquée à notre base de données donne les résultats suivants.</p>
+<pre><code>## Call: survfit(formula = Surv(brevet$age, brevet$info != &quot;cens&quot;) ~ 1, 
+##     data = brevet, type = c(&quot;kaplan-meier&quot;))
+## 
+##       n  events  median 0.95LCL 0.95UCL 
+## 2218.00 2218.00    6.02    5.77    6.27</code></pre>
+<p>Cette sortie R nous signifie que la médiane de l’espérance de la durée de vie des brevets est d’environ 6. Plus simplement, 50% des brevets sont abandonnées avant six ans d’ancienneté.</p>
+<blockquote>
+<p><span style="color: #cdaa80  ;"> Nous obtenons une courbe convexe et décroissante ce qui signifie que de moins en moins de brevets sont abandonnés avec l’âge du brevet. On constate aussi que les suppositions précédemment mentionnées à savoir “la plupart des brevets sont abandonnés au bout de cinq à 10 ans” et “seuls cinq à dix pourcent des brevets atteignent leur terme maximal légal” semblent toutes les deux vérifiées sur notre tableau de données.</span></p>
+</blockquote>
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-25-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>On réalise à présent cette même analyse en séparant les estimations selon l’organisme détenteur du brevet.</p>
+<pre><code>## Call: survfit(formula = Surv(brevet$age, brevet$info != &quot;cens&quot;) ~ do, 
+##     data = brevet, type = c(&quot;kaplan-meier&quot;))
+## 
+##                    n events median 0.95LCL 0.95UCL
+## do=DAM           296    296   6.70    6.28    7.09
+## do=DCC           370    370   7.07    6.66    7.90
+## do=DRN           189    189   8.67    7.59    9.47
+## do=DSM           143    143   5.65    4.64    6.72
+## do=DSV            70     70   3.48    2.64    5.50
+## do=DTA          1095   1095   5.12    4.78    5.54
+## do=IPSN           43     43   7.88    6.60   10.84
+## do=TECHNICATOME   12     12  15.62   11.67      NA</code></pre>
+<p>On observe qu’il y a des disparités notables selon le détenteur du brevet. On citera deux cas extrêmes. La courbe de survie des brevets Tech a une allure plutôt concave avec notamment le premier brevet abandonné au bout de sept ans d’existence et plus de 30% de brevets maintenus jusqu’au terme légal. De plus, Tech détient peu de brevets (seulement 12). On peut imaginer que la stratégie de dépôt de brevet de Tech est plus sélective.</p>
+<p>La courbe de survie de la SV quant à elle est plutôt convexe et montre que celle-ci abandonne la moitié de ses brevets avant trois ans et demi et plus de 90% des brevets sont abandonnés avant dix ans. Là aussi la stratégie de dépôt de brevets peut expliquer cette attitude. Le champ d’activité dans lequel la SV exerce peut également être très évolutif très vite et cela constitue une autre explication possible.</p>
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-27-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="estimation-paramétrique" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> <span style="color: #344a58;">Estimation paramétrique</span></h2>
+<div id="ecriture-de-la-fonction-de-vraisemblance" class="section level3" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> <span style="color: #cdb380;">Ecriture de la fonction de vraisemblance</span></h3>
+<p>On commence par définir la variable aléatoire <span class="math inline">\(\delta^*\)</span> représentant la durée de vie désirée par le breveteur pour son brevet. <span class="math inline">\(\delta^* \in [0, +\inf ]\)</span>. La durée de vie observée d’un brevet <span class="math inline">\(\delta=min(\delta^{*},20)\)</span> car le terme du brevet est limité par la loi à 20 ans.</p>
+<ul>
+<li><span class="math inline">\(f(\delta^*)\)</span> est la fonction de densité de <span class="math inline">\(\delta^*\)</span></li>
+<li><span class="math inline">\(F(\delta^*)\)</span> est la fonction de répartition de <span class="math inline">\(\delta^*\)</span></li>
+</ul>
+<p>On peut en déduire la fonction de survie <span class="math inline">\(S(\delta^*)=1-F(\delta^*)\)</span> et la fonction de hasard <span class="math inline">\(h(\delta^*)=f(\delta^*)/S(\delta^*)\)</span> de la durée de vie des brevets.</p>
+<p>Selon le cas dans lequel on se place, on observe tantôt une durée de vie <span class="math inline">\(\delta_i\)</span> (cas 1, 3, 4 et 6), tantôt une ancienneté <span class="math inline">\(a_i\)</span> (cas 2 et 5). On note également <span class="math inline">\(\Delta_i\)</span> l’ancienneté qu’a atteint un brevet en 1990.</p>
+<p>Les contributions individuelles à la vraisemblance sont :</p>
+<ul>
+<li>1er cas : <span class="math inline">\(l_{i}^{i}=f(\delta_i=\delta_{i}^{*})\)</span></li>
+<li>2ème cas : <span class="math inline">\(l_i^{ii}=P[\delta_{i} \geq a_i]=1-F(a_i)\)</span></li>
+<li>3ème cas : <span class="math inline">\(l^{iii}_i=P[\delta_{i} = \delta_i^{*} | \delta_i^{*} \geq \Delta_i]= \frac{1}{1-F(\Delta_i)} . f(\delta_i=\delta_i^{*})\)</span></li>
+<li>4ème cas : <span class="math inline">\(l_i^{iv}=P[\delta_i=20 | \delta_i^{*} \geq \Delta_i]=P[\delta_i^{*}\geq20 | \delta_i^{*} \geq \Delta_i]= \frac{1}{1-F(\Delta_i)} . 1-F(20)\)</span></li>
+<li>5ème cas : <span class="math inline">\(l_i^v=P[\delta_i \geq a_i | \delta_i^{*} \geq \Delta_i] = \frac{1}{1-F(\Delta_i)} . 1-F(a_i)\)</span></li>
+<li>6ème cas : <span class="math inline">\(P[\delta_i \geq a_i | a_i =20 \quad et \quad \delta_i^{*} \geq \Delta_i]=P[\delta_i^{*} \geq 20 | \delta_i^{*}\geq \Delta_i]= \frac{1}{1-F(\Delta_i)} . 1-F(20)\)</span></li>
+</ul>
+<p>On va également définir une variable indicatrice <span class="math inline">\(I_k\)</span> telle que <span class="math inline">\(I_i^{k}=1\)</span> si l’observation <span class="math inline">\(i\)</span> est de type <span class="math inline">\(k\)</span> et <span class="math inline">\(I_i^{k}=0\)</span>. La fonction de vraisemblance condensée s’écrit alors de la façon suivante :
+<span class="math display">\[L=\prod_{i=1}^{N} \prod_{k=1}^{vi}(l_{i}^{k})^{I^{k}_i}\]</span>
+ </p>
+</div>
+<div id="spécification-de-la-loi-de-durée-de-vie" class="section level3" number="3.5.2">
+<h3><span class="header-section-number">3.5.2</span> <span style="color: #cdb380;">Spécification de la loi de durée de vie</span></h3>
+<p>Avant de procéder aux estimations, nous avons dû faire le choix de la spécification de la loi qui allait caractérisé la loi de durée des brevets. Avant cela nous nous sommes demandé à quoi pourrait ressembler la loi. Nous avons pensé à une loi en forme de U inversé. Pourquoi cette forme ?
+Nous pouvons penser que durant les premiers âges, les brevets seront maintenus car ils viendront tout juste d’être déposés. ensuite, nous pouvons anticiper un pic d’abandon des brevets dû notamment au fait que les brevets protégeant des innovations qui s’avèreront peu ou pas utiles ne seront pas renouvéles et abandonnés par l’entreprise. Ensuite, plus on s’approchera dans la durée maximale légale de 20 ans, nous pouvons nous attendre à un ralentissement de l’abandon des brevets. En effet, un brevet ayant déjà duré 15 ans protège sans doute une innovation à succès et donc dans ce cas le brevet sera renouvelé jusqu’à son terme maximal légal. Une courbe en forme de U inversé apparaît donc comme une forme pouvant caractériser la durée de vie des brevets.</p>
+<p>Afin d’effectuer les estimations, nous avons décidé d’utiliser trois lois statistiques :</p>
+<ul>
+<li>loi exponentielle : distribution à un paramètre</li>
+<li>loi log normale : distribution à deux paramètres</li>
+<li>loi singhmaddala : distribution à trois paramètres</li>
+</ul>
+<p>La loi exponentielle est une loi à un paramètre ce qui fait d’elle la loi la moins flexible des trois. La loi la plus flexible dans notre cas sera la loi singhmaddala.</p>
+</div>
+<div id="estimations-et-représentations-graphiques" class="section level3" number="3.5.3">
+<h3><span class="header-section-number">3.5.3</span> <span style="color: #cdb380;">Estimations et représentations graphiques</span></h3>
+<p>Pour chacune des lois citées ci-dessus nous avons effectué deux estimations. Premièrement, nous avons effectué une estimation prenant en compte le biais de sélection présent dans la base de données. Deuxièmement, nous avons effectué une estimation ne prenant pas en compte ce biais. Suite à cela, nous allons pouvoir voir si nos estimations sont influencées ou non par le biais de sélection.</p>
+<p> </p>
+<p><b style="color: #344a58;">Estimation avec une loi exponentielle</b></p>
+<div align="center">
+<p><img src="expo.png" /></p>
+</div>
+<p><b style="color: #344a58;">Estimation avec une loi log-normale</b></p>
+<div align="center">
+<p><img src="normale.png" /></p>
+</div>
+<p><b style="color: #344a58;">Estimation avec une loi Singhmaddala</b></p>
+<div align="center">
+<p><img src="singhm.png" /></p>
+</div>
+<p> </p>
+<p>Globalement, si l’on regarde les paramètres estimés pour chacune des lois, nous pouvons dire que le fait de prendre en compte ou non le biais de sélection va influencer nos estimations et donc la durée de vie moyenne des brevets.</p>
+<p>Passons maintenant aux représentations graphiques et plus particulièrement à la représentation de la fonction de survie et de hasard.</p>
+<p> </p>
+<p><b style="color: #344a58;">Représentations graphiques</b></p>
+<p>Pour les deux graphiques suivants, nous distinguerons les deux types de courbes comme suit :
+- courbe continue : estimations prenant en compte le biais de sélection
+- courbe discontinue : estimations ne prenant pas en compte le biais de sélection</p>
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-31-1.png" width="80%" style="display: block; margin: auto;" />
+Les fonctions de survie relatives à l’estimation ne prenant pas en compte le biais de sélection sont plus hautes que les autres. Cela veut dire qu’à tout âge les probabilités que le brevet soit renouvelé sont plus importantes.</p>
+<p>La loi singhmaddala et log normale affichent des résultats très proches dû probablement au fait que ces deux lois sont flexibles par rapport à la loi exponentielle.</p>
+<p>Globalement, à la vue du graphique, nous pouvons dire que :</p>
+<ul>
+<li>de 0 à 2 ans, aucun brevet n’est abandonné</li>
+<li>fort taux d’abandon entre 5 et 15 ans</li>
+<li>ralentissement de l’abandon après 15 ans</li>
+</ul>
+<p> </p>
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-33-1.png" width="80%" style="display: block; margin: auto;" />
+Les fonctions de hasard relatives à l’estimation ne prenant pas en compte le biais de sélection sont plus basses que les autres. Cela veut dire qu’à tout âge le risque instantané que le brevet soit abandonné est plus important.</p>
+<p>La particularité de la loi exponentielle est qu’elle afiche une taux de rique constant dans le temps. A chaque âge, le brevet a la même probabilité d’être abandonné. Nous pouvons déjà conclure que la loi exponentielle n’est pas la loi adaptée pour caractériser la loi de durée de vie des brevets.</p>
+<p>Globalement, à la vue du graphique concernant la loi singhmaddala, nous pouvons dire que :</p>
+<ul>
+<li>de 0 à 5 ans, les brevets ont un risque instantané d’abandon inférieur à 12%</li>
+<li>pic d’abandon à 12 ans (environ 20%)</li>
+<li>ralentissement de l’abandon après 12 ans</li>
+</ul>
+<p>De 6 à 20 ans, le risque d’abandon oscille entre 15% et 20%.</p>
+<p> </p>
+<p><b style="color: #344a58;">Durées de vie moyennes</b></p>
+<div style="padding:3px; border:2px dotted #fae5d3; background-color:#fae5d3;">
+<table>
+<thead>
+<tr class="header">
+<th align="center"><strong>Loi</strong></th>
+<th align="center"><strong>Durée moyenne (sans biais)</strong></th>
+<th align="center"><strong>Durée moyenne (avec biais)</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">Singhmaddala</td>
+<td align="center">9.04</td>
+<td align="center">11.33</td>
+</tr>
+<tr class="even">
+<td align="center">Log normale</td>
+<td align="center">9.01</td>
+<td align="center">12.01</td>
+</tr>
+<tr class="odd">
+<td align="center">Exponentielle</td>
+<td align="center">8.65</td>
+<td align="center">12.59</td>
+</tr>
+</tbody>
+</table>
+<p><b style="color: #238694  ;">Table : Durées de vie moyenne estimées </b></p>
+</div>
+<p> </p>
+<p>Si l’on ne prend pas en compte le biais de sélection dans nos estimations, les durées de vie moyennes sont beaucoup plus élevées.
+Cela vient bien confirmer le fait que la biais d’échantillonnage entraîne une surreprésentation des durées longues et de ce fait une augmentation logique de la durée de vie moyenne estimée.</p>
+<p>Concernant les durées de vie moyennes en prenant en compte le biais de sélection, nous pouvons voir que la loi singhmaddala et log normale renvoient une durée moyenne très proche d’environ 9 ans. Concernant la loi exponentielle, elle affiche une durée de vie moyenne plus faible. Cependant, nous avons bien compris que la loi exponentielle n’est pas une loi adpatée dans notre cas.</p>
+<p> </p>
+<blockquote>
+<p><span style="color: #cdaa80  ;">Pour conclure, on dira que la durée de vie moyenne d’un brevet est de 9 ans et que l’on observe un pic d’abandon des brevets à l’âge de 12 ans.</span></p>
+</blockquote>
+</div>
+<div id="estimations-selon-les-domaines-technologiques" class="section level3" number="3.5.4">
+<h3><span class="header-section-number">3.5.4</span> <span style="color: #cdb380;">Estimations selon les domaines technologiques</span></h3>
+<p><img src="Projet-3R_Estimation_des_durees_files/figure-html/unnamed-chunk-39-1.png" width="80%" style="display: block; margin: auto;" />
+ </p>
+<p>Nous pouvons observer des différences dans la gestion des brevets selon les directions opérationelles.</p>
+<p>De manière générale, le pic d’abandon des brevets quelque soit la direction opéarationelle est situé entre 7 et 12 ans.
+Si l’on prend les deux cas polaires, la SV est la direction dont la gestion des brevets est la plus stricte. Pour cette direction, le pic d’abandon est situé à 8 ans et il est d’environ 30%. Entre 5 et 15 ans, le taux de risque qu’a un brevet d’être abandonné est assez élevé car il oscille entre 20 et 30%.
+A l’inverse, si l’on prend la CC, c’est la direction dont la gestion des brevets est la moins stricte. Le pic d’abandon des brevets apparaît aussi à 8 ans mais il est seulement de 11% comparé à la SV où il était de presque 30%. Entre 6 et 15 ans, le taux d’abandon est le plus élevé mais ne dépasse pas les 11%.</p>
+<blockquote>
+<p><span style="color: #cdaa80  ;">La gestion des brevets dépend tout particulièrement de la direction à laquelle il appartient. On observe un pic d’abandon entre 7 et 12 ans. Le taux est plus ou moins élevé selon les directions opérationnelles. </span></p>
+</blockquote>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="4">
+<li id="fn4"><p>source : Base de données du projet 3R<a href="mieux-comprendre-les-modèles-de-durée.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="mieux-comprendre-les-brevets.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="application-des-modèles-sur-une-nouveau-jeu-de-données.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Projet-3R_Estimation_des_durees.pdf", "Projet-3R_Estimation_des_durees.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
